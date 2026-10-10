@@ -1,0 +1,9 @@
+language: bash
+install: bash install.sh
+script: STATUS=$(curl -I localhost &> /dev/stderr --write-out "%{http_code}") | if test $STATUS 200; then exit 0; fi
+deploy:
+  provider: gae
+  keyfile: gaekey.json
+  project: deploying-to-257-6d193761
+  on:
+    branch: main
